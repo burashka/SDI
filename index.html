@@ -1,0 +1,402 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>ШРИ</title>
+ 		<link rel="stylesheet" href="test.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="print.css" type="text/css" media="print" charset="utf-8" />
+		<link rel="stylesheet" href="/JQuery/jquery-ui-1.8.23.custom.css" type="text/css" media="screen" charset="utf-8" />
+	</head>
+	<body>
+		<ul>
+			<li>
+				<div>
+					<div></div>
+					<span>Вопрос №1</span>
+				</div>
+				<div class='ie-last-child'>
+					<div>
+						Перечислите известные вам инструменты и приёмы для отладки кода в разных браузерах.
+					</div>
+					<div>
+						Firefox: Firebug, Aptana Firefox Extension, в последних версиях есть встроенный JS-отладчик, в последних версиях есть удаленная отладка мобильной версии, Firebug Lite<br>
+						Chrome: WebKit Inspector, в последних версиях есть удаленная отладка мобильной версии, Firebug Lite<br>
+						Opera: Dragonfly, Firebug Lite<br>
+						IE: Firebug Lite, IE Developer Toolbar<br>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div>
+					<div></div>
+					<span>Вопрос №2</span>
+				</div>
+				<div class='ie-last-child'>
+					<div>
+						Опишите своими словами, что происходит в браузерах при клике на ссылку yandex.ru (полнота ответа — на ваше усмотрение).
+					</div>
+					<div>
+						Происходят JS-события привязанные на события onmousedown и click по ссылке и DOM-элементам содержащим её.<br>
+						Происходят JS-события связанные с уходом со страницы содержащей ссылку.<br>
+						Осуществляется поиск yandex.ru в данных из файла ОС hosts.<br>
+						В случае нахождения отправляется запрос на указанный ip-адрес.<br>
+						Если не был найден, то совершается запрос на DNS сервер, после чего отправляется запрос на полученный от сервера ip-адрес.<br>
+						Если адрес не найден и на DNS-сервере, то выдается ошибка нахождения адреса.<br>
+						Отправляет запрос на веб-сервер yandex.ru.<br>
+						Происходит анализ статуса HTTP и HTTP Headers, если все в порядке, то происходит загрузка yandex.ru/index.html.<br>
+						Происходит загрузка всех дополнительных данных указанных в index.html.<br>
+						Выполняются загруженные JavaScript-сценарии.<br>
+						Происходит JS-событие окончания загрузки документа.<br>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div>
+					<div></div>
+					<span>Вопрос №3</span>
+				</div>
+				<div class='ie-last-child'>
+					<div>
+						Предположим, что мы представляем автосалон по продаже японских и немецких автомобилей. У нас есть базовые классы и примеры их использования. Допишите недостающий код.
+					</div>
+					<div>
+						/**<br>
+						* Создает экземпляр Машины<br>
+						* @this {Car}<br>
+						* @param {string} manufacturer Производитель<br>
+						* @param {string} model Модель<br>
+						* @param {number} year Год производство<br>
+						*/<br>
+						function Car(manufacturer, model, year) {<br>
+							this.manufacturer = manufacturer;<br>
+							this.model = model;<br>
+							this.year = year || (new Date).getFullYear();<br>
+							this.price = '0';<br>
+						}<br>
+<br>
+						/**<br>
+						* Возвращает информацию о машине<br>
+						* <br>
+						* @return {String}<br>
+						*/<br>
+						Car.prototype.getInfo()<br>
+						{<br>
+							return this.manufacturer + ' ' + this.model + ' ' + this.year;<br>
+						}<br>
+<br>
+						/**<br>
+						* Переопределили метод привидение к типу String<br>
+						* <br>
+						* @return {String}<br>
+						*/<br>
+						Car.prototype.toString = Car.prototype.getInfo;<br>
+<br>
+						/**<br>
+						* Возвращает детализированную информацию о машине<br>
+						* <br>
+						* @return {String}<br>
+						*/<br>
+						Car.prototype.getDetailedInfo = function()<br>
+						{<br>
+							return 'Производитель: ' + this.manufacturer + '. Модель: ' + this.model + '. Год: ' + this.year;<br>
+						}<br>
+<br>
+						/**<br>
+						* Возвращает страну производителя машины<br>
+						* <br>
+						* @return {String}<br>
+						*/<br>
+						Car.prototype.getCountry = function(){<br>
+							switch (this.manufacturer.toLowerCase()) {<br>
+								case 'bmw':<br>
+								case 'audi':<br>
+									return 'Germany';<br>
+								case 'toyota':<br>
+									return 'Japan';<br>
+							}<br>
+<br>
+							return 'none';<br>
+						}<br>
+<br>
+						/**<br>
+						* Создает экземпляр Автосалона<br>
+						* @this {CarDealer}<br>
+						* @param {String} name Название автосалона<br>
+						*/<br>
+						function CarDealer(name) {<br>
+							this.name = name;<br>
+							this.cars = [];<br>
+						}<br>
+<br>
+						/**<br>
+						* Добавляет машину в автосалон<br>
+						* <br>
+						* @return {CarDealer}<br>
+						*/<br>
+						CarDealer.prototype.add = function()<br>
+						{<br>
+							for(var i=0, len=arguments.length; i < len; i++)<br>
+							this.cars.push(arguments[i]);<br>
+<br>
+							return this;<br>
+						}<br>
+<br>
+						/**<br>
+						* Установить цену на машину<br>
+						* @param {string} car идентификатор машины<br>
+						* @param {string} price стоимость<br>
+						* <br>
+						* @return {CarDealer}<br>
+						*/<br>
+						CarDealer.prototype.setPrice = function(car, price)<br>
+						{<br>
+							var carProps = car.split(' ');<br>
+							for(var i=0, len = this.cars.length; i \< len; i++)<br>
+								if((this.cars[i].manufacturer == carProps[0])<br>
+									&&(this.cars[i].model == carProps[1])<br>
+									&&(this.cars[i].year == carProps[2]))<br>
+									{<br>
+										this.cars[i].price = price;<br>
+										return this;<br>
+									}<br>
+<br>
+							return this;<br>
+						}<br>
+<br>
+						/**<br>
+						* Возвращает список машин<br>
+						* @param {String} Страна производитель машины. Необязательный параметр<br> 
+						* <br>
+						* @return {String}<br>
+						*/<br>
+						CarDealer.prototype.list = function()<br>
+						{<br>
+							var str = "";<br>
+							for(var i=0, len = this.cars.length; i \< len-1; i++)<br>
+							{<br>
+								if(arguments.length \> 0)<br>
+								{<br>
+									if(this.cars[i].getCountry() == arguments[0])<br>
+									str += this.cars[i] + ', ';<br>
+								}<br>
+								else<br>
+									str += this.cars[i] + ', ';<br>
+							}<br>
+							return str.substr(0, (str.length-2));<br>
+						}<br>
+<br>
+						/**<br>
+						* Возвращает список машин с фильтрацией по стране-производителю<br>
+						* Метод реализован для совместимости с API. Рекомендуется использовать метод CarDealer.list<br>
+						* @param {String} country Страна производитель машины<br>
+						* <br>
+						* @return {String}<br>
+						*/<br>
+						CarDealer.prototype.listByCountry = function(country) { return this.list(country); }<br>
+<br>
+						/**<br>
+						* Возвращает прайс-лист машин автосалона в рублях<br>
+						* <br>
+						* @return {String}<br>
+						*/<br>
+						CarDealer.prototype.listRusPrice = function(){<br>
+							for(var i=0, len = this.cars.length; i \< len-1; i++)<br>
+								str += this.cars[i] + ' ' + ((this.cars[i].price[0] == '€') ? this.cars[i].price.substr(1)*40 : this.cars[i].price.substr(1)*0.4) + ', ';<br>
+ <br>
+							return str.substr(0, (str.length-2));<br>
+						}<br>
+<br>
+						var bmw		 = new Car("BMW", "X5", 2010),<br>
+							audi	 = new Car("Audi", "Q5", 2012),<br>
+							toyota	 = new Car("Toyota", "Camry"),<br>
+							yandex = new CarDealer('Яндекс.Авто');<br>
+<br>
+						yandex.add(toyota).add(bmw, audi);<br>
+						yandex<br>
+							.setPrice('BMW X5 2010', '€2000')<br>
+							.setPrice('Audi Q5 2012', '€3000')<br>
+							.setPrice('Toyota Camry 2012', '¥3000');<br>
+						yandex.list();<br>
+						yandex.listByCountry('Germany');<br>
+						yandex.listRusPrice();<br>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div>
+					<div></div>
+					<span>Вопрос №4</span>
+				</div>
+				<div class='ie-last-child'>
+					<div>
+						Найдите все текстовые файлы (*.txt), в имени которых содержится «yandex», а в содержимом — «школа разработки интерфейсов».
+					</div>
+					<div>
+						find ./ -name '*yandex*.txt' -print 2>/dev/null | xargs grep -il "школа разработки интерфейсов"
+					</div>
+				</div>
+			</li>
+			<li>
+				<div>
+					<div></div>
+					<span>Вопрос №5</span>
+				</div>
+				<div class='ie-last-child'>
+					<div>
+						Дана программа, реализованная одновременно на Bash, Python и Perl. Программа принимает произвольное количество аргументов и печатает их количество. Нужно добавить опцию -v для verbose-режима, в котором дополнительно выводится значение каждого из аргументов.
+					</div>
+					<div>
+						#!/usr/bin/env bash <br>
+<br>
+usage() {<br> 
+cat \<\< EOF <br>
+Usage: printargs.sh [OPTIONS] [ARGUMENTS]<br> 
+Print the number of arguments.<br> 
+<br>
+OPTIONS:<br> 
+-h print help message<br> 
+-m MSG custom message<br>
+<br>
+Examples:<br> 
+printargs.sh a b c<br> 
+printargs.sh -m 'Arguments count: ' a b c<br> 
+printargs.sh -h<br> 
+<br>
+EOF <br>
+}<br> 
+<br>
+while getopts “vhm:” OPTION<br> 
+do<br> 
+case $OPTION in<br> 
+h)<br> 
+usage<br> 
+exit 1<br> 
+shift;;<br> 
+ v)<br> 
+ FLAG=1<br> 
+ shift;;<br> 
+m)<br> 
+MESSAGE=$OPTARG<br> 
+shift;shift;;<br> 
+esac<br> 
+done<br> 
+COUNT=0<br> 
+for ARG in $@; do<br> 
+ let COUNT+=1<br> 
+done<br> 
+if [ "$FLAG" == 1 ]; then<br> 
+ echo $@<br> 
+fi<br> 
+<br>
+if [[ "$MESSAGE" != "" ]]; then<br> 
+echo $MESSAGE<br> 
+fi<br> 
+<br>
+echo $COUNT<br> 
+<br>
+<br>
+#!/usr/bin/env python<br>
+<br>
+import argparse<br>
+<br>
+parser = argparse.ArgumentParser(description='Print the number of arguments.')<br>
+parser.add_argument('arguments', metavar='ARG', type=str, nargs='*', help='some arguments')<br>
+parser.add_argument('-m', dest='message', default='', help='custom message')<br>
+parser.add_argument('-v', dest='verbose', action='store_true', default=False)<br>
+<br>
+args = parser.parse_args()<br>
+count = 0<br>
+<br>
+for a in args.arguments:<br>
+    count += 1<br>
+<br>
+if args.verbose:<br>
+	print(args.arguments)<br>
+<br>
+if args.message != '':<br>
+    print(args.message)<br>
+<br>
+print(count)<br>
+<br>
+<br>
+#!/usr/bin/env perl<br>
+<br>
+use strict;<br>
+use Getopt::Long;<br>
+use Pod::Usage;<br>
+<br>
+my $help;<br>
+my $message = '';<br>
+my $verbose = 0;<br>
+<br>
+@ARGV and GetOptions(<br>
+    "h" => \$help,<br>
+    "m=s" => \$message,<br>
+    # TODO: add '-v' option for verbose mode<br>
+    "v" => \$verbose<br>
+) or pod2usage(1);<br>
+<br>
+pod2usage(-verbose => 2, -exitval => 2) if $help;<br>
+<br>
+if ($message ne "") {<br>
+    print($message . "\n");<br>
+}<br>
+<br>
+my $count = 0;<br>
+<br>
+foreach(@ARGV) {<br>
+    # TODO: add '-v' option for verbose mode<br>                                                                                       
+    # and print each argument<br>                                                                                                      
+    $verbose and print "\tArgument ".$count." is ".$ARGV[$count]."\n";<br>                                                             
+    $count++;<br>                                                                                                                      
+}<br>                                                                                                                                  
+<br>                                                                                                                                   
+print($count . "\n");<br>                                                                                                              
+<br>
+__END__<br>                                                                                                                            
+<br>
+=head1 NAME<br>                                                                                                                        
+<br>
+    printargs.pl - Print the number of arguments.<br>                                                                                  
+<br>
+=head1 SYNOPSIS<br>                                                                                                                    
+<br>                                                                                                                                   
+    printargs.pl [options] [arguments]<br>                                                                                             
+<br>
+=head1 OPTIONS<br>                                                                                                                     
+    -h      Show help message.<br>
+    -m MSG  Specify a custom message.<br>                                                                                              
+    -v      Print arguments.<br>                                                                                          
+<br>
+=head1 EXAMPLE<br> 
+<br>
+    printargs.sh a b c [-v]<br>
+    printargs.sh -m 'Arguments count: ' a b c [-v]<br>                                                                                 
+    printargs.sh -h<br>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div>
+					<div></div>
+					<span>Вопрос №6</span>
+				</div>
+				<div class='ie-last-child'>
+					<div>
+						Расскажите, в каком объёме и при каких обстоятельствах вы изучали следующие темы: языки программирования (императивные/декларативные, разные системы типов), структуры (классы, структуры данных, примитивные типы), парадигмы (события, ООП, параллельность/асинхронность, кеширование), алгоритмы (парсинг, сортировка, поиск), паттерны.
+					</div>
+					<div>
+						Два года кружка информатики в СПбГДТЮ, основной язык С\С++<br>
+						Уроки информатики в 9-11 классах школы, основной язык Ocaml<br>
+						ВУЗ, языки С\C++, Haskell, Java, Ассемблер<br>
+						Самообразование по статьям в Интернете и книгам<br>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<script type="text/javascript" src="/JQuery/jquery-1.8.0.min.js"></script>
+  		<script type="text/javascript" src="/JQuery/jquery-ui-1.8.23.custom.min.js"></script>
+		<script type="text/javascript" src="script.js"></script>
+	</body>
+</html>
