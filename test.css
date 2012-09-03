@@ -1,74 +1,86 @@
 ul
 {
-	list-style: 			none outside none;
-    margin: 				0;
-    padding: 				0;
-    width: 					100%;
-    text-align: 			center;
+	list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
 }
 
 span
 {
-	-moz-user-select: 		-moz-none;
-	-o-user-select: 		none;
-	-khtml-user-select: 	none;
-	-webkit-user-select: 	none;
-	cursor: 				default;
+	-moz-user-select: -moz-none;
+	-o-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	cursor: default;
 }
 
-li, li > div:last-child, .ie-last-child
+li, .inside
 {
-	-moz-border-radius: 	10px;
-	-webkit-border-radius: 	10px;
-	border-radius: 			10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
 }
 
-li > div:last-child > div, .ie-last-child > div
+.inside
 {
-	padding: 				10px;
-	text-align: 			left;
+	color: #000000;
+	background: #EFEFEF;
+	width: 100%;
+	height: auto;
 }
 
-div:last-child > div:first-child, .ie-last-child > div:first-child
+.inside > div
 {
-	padding-bottom: 		0px;
-	font-style: 			italic;
+	padding: 10px;
+	text-align: left;
+}
+
+.inside > div:first-child
+{
+	padding-bottom: 0px;
+	font-style: italic;
 }
 
 li
 {
-	color: 					#FFFFFF;
-    background: 			#4A4A4A;
-    border-radius: 			10px;
-    margin: 				20px;
+	color: #FFFFFF;
+    background: #4A4A4A;
+    border-radius: 10px;
+    margin: 20px;
 }
 
 span
 {
-	height: 				20px;
+	height: 20px;
 }
 
-li > div:last-child, .ie-last-child
+.label
 {
-	color: 					#000000;
-	background: 			#EFEFEF;
-	width: 					100%;
-	height: 				auto;
+	width: 100%;
 }
 
-li > div:first-child
+.label:hover > div
 {
-	width: 					100%;
+	-moz-box-shadow: 0px 0px 2px 2px #FFC843;
+	-webkit-box-shadow: 0px 0px 2px 2px #FFC843;
+	box-shadow: 0px 0px 2px 2px #FFC843;
 }
 
-li > div:first-child > div
+.label:hover > span
 {
-	width: 					14px;
-	height: 				14px;
-	margin: 				3px;
-	float: 					right;
-	background: 			url(down.png) center no-repeat;
-	-moz-border-radius: 	20px;
-	-webkit-border-radius: 	20px;
-	border-radius: 			20px;
+	text-shadow: #FFC843 0px 0px 5px;
+}
+
+.label > div
+{
+	width: 14px;
+	height: 14px;
+	margin: 3px;
+	float: right;
+	background: url(down.png) center no-repeat;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	border-radius: 20px;
 }

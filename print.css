@@ -1,36 +1,35 @@
 ul
 {
-	list-style: 			none outside none;
-    margin: 				0;
-    padding: 				0;
-    width: 					100%;
-    text-align: 			center;
+	list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
 }
 
 span
 {
-	font-size: 				20px;
+	font-size: 20px;
 }
 
-div:last-child, .ie-last-child
+.inside
 {
-	display: 				block !important;
+	display: block !important;
 }
 
-li > div:last-child > div, .ie-last-child > div
+.inside > div
 {
-	padding: 				10px;
-	text-align: 			left;
+	padding: 10px;
+	text-align: left;
 }
 
-div:last-child > div:first-child, .ie-last-child > div:first-child
+.inside > div:first-child
 {
-	padding-bottom: 		0px;
-	font-style: 			italic;
+	padding-bottom: 0px;
+	font-style: italic;
 }
 
 li
 {
-    margin: 				20px;
+    margin: 20px;
 }
-
